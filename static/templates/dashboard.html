@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+  <h3 class="text-primary">Orders</h3>
+  <a class="btn btn-primary pull-right" href="{% url 'logout' %}">Logout</a>
+  <span class="pull-right" style="margin-right: 50px">Welcome {{name}}!</span>
+  <table class="table" style="width:100%">
+    <thead>
+      <th width="200">Order ID</th>
+      <th width="80">Order Status</th>
+      <th width="400">Product Name</th>
+      <th width="80">Product Url</th>
+      <th width="80">Cost Price</th>
+      <th width="80">Actions</th>
+    </thead>
+    <tbody>
+      {%for i in data%}
+          <tr>
+            <td>{{i.order_id}}</td>
+            <td>{{i.order_status}}</td>
+            <td>{{i.product_name}}</td>
+            <td><a href="{{i.product_url}}" target="_blank">{{i.product_url}}</a></td>
+            <td>Rs {{i.price}}</td>
+            <td>
+            <a class="btn btn-primary pull-right" href="{% url 'order' %}?order_id={{i.id}}">+ Order This Product  </a></td>
+          </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+{% endblock %}

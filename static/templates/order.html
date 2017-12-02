@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Place Order{% endblock %}
+
+{% block content %}
+  <h3 class="text-primary text-center">Place Order</h3>
+  <a class="btn btn-default pull-right" href="{% url 'logout' %}">Logout</a>
+  <a class="btn btn-primary pull-right" href="{% url 'home' %}">back</a>
+  <span class="pull-right" style="margin-right: 50px">Welcome {{name}}!</span>
+
+  <h4 style="margin-top:80px"> {{data.product_name}}</h4>
+  <span>Price: Rs {{data.price}}</span>
+  <p> <a href="{{data.product_url}}" target="_blank">compare in original site</a></p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit">Confirm Order</button>
+  </form>
+{% endblock %}
