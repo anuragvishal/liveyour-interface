@@ -28,16 +28,8 @@ def toFloat(a):
 
 def Dashboard(request):
     name = request.user.first_name+ ' '+request.user.last_name
-    data = []
-    for element in reversed(Orders.objects.all()):
-        data.append({
-            'id': element.id,
-            'product_name': element.product_name,
-            'price': toFloat(element.cost_price)*66,
-            'order_id': element.order_id,
-            'order_status': element.order_status,
-            'product_url': element.product_url
-        });
+    data = reversed(Orders.objects.all())
+
     return render(request,'dashboard.html',{'data':data, 'name':name})
 
 def Order(request):
